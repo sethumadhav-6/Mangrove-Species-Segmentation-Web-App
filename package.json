@@ -1,7 +1,7 @@
 {
-  "name": "mangrove-species-segmentation",
+  "name": "kerala-mangrove-species-segmentation",
   "version": "1.0.0",
-  "description": "AI-powered mangrove ecosystem species identification for DJI Mini 2 drone footage",
+  "description": "AI-powered identification of 19 native Kerala mangrove species for DJI Mini 2 drone footage analysis",
   "main": "index.html",
   "scripts": {
     "start": "python -m http.server 8000",
@@ -12,7 +12,8 @@
     "test": "echo 'No tests yet' && exit 0"
   },
   "keywords": [
-    "mangrove",
+    "kerala-mangroves",
+    "indian-mangroves",
     "species-identification",
     "image-segmentation",
     "tensorflow-js",
@@ -23,17 +24,20 @@
     "biodiversity",
     "ecology",
     "machine-learning",
-    "web-app"
+    "web-app",
+    "vembanad-lake",
+    "cochin-backwaters",
+    "kanayannur"
   ],
   "author": "Your Name <your-email@example.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/mangrove-segmentation.git"
+    "url": "https://github.com/your-username/kerala-mangrove-segmentation.git"
   },
-  "homepage": "https://your-username.github.io/mangrove-segmentation/",
+  "homepage": "https://your-username.github.io/kerala-mangrove-segmentation/",
   "bugs": {
-    "url": "https://github.com/your-username/mangrove-segmentation/issues"
+    "url": "https://github.com/your-username/kerala-mangrove-segmentation/issues"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",
