@@ -1,29 +1,41 @@
-# 🌿 Mangrove Species Segmentation App
+# 🌿 Tropical Mangrove Species Segmentation App
 
-A web-based AI-powered application for real-time mangrove ecosystem species identification and image segmentation, optimized for DJI Mini 2 drone footage analysis.
+A web-based AI-powered application for real-time mangrove ecosystem species identification and image segmentation, specifically designed for the 19 native mangrove species found in Kerala, India. Optimized for DJI Mini 2 drone footage analysis in Kanayannur and surrounding mangrove ecosystems.
 
 ## 🚀 Live Demo
 
-**[Try the App Now!](https://your-username.github.io/mangrove-segmentation/)**
+**[Try the App Now!](https://your-username.github.io/kerala-mangrove-segmentation/)**
 
 ## 📋 Features
 
 ### 🎯 Core Functionality
-- **Real-time Species Detection**: Identify 8+ common mangrove species
+- **Real-time Species Detection**: Identify all 19 native Kerala mangrove species
 - **Image Segmentation**: Visual highlighting of different species areas
 - **Live Camera Feed**: Real-time analysis using device camera
 - **File Upload Support**: Analyze images/videos from DJI Mini 2
 - **Biodiversity Metrics**: Calculate Shannon diversity index and coverage statistics
 
-### 🌱 Supported Mangrove Species
-1. **Rhizophora mangle** (Red Mangrove)
-2. **Avicennia germinans** (Black Mangrove)
-3. **Bruguiera gymnorhiza** (Large-leafed Orange Mangrove)
-4. **Laguncularia racemosa** (White Mangrove)
-5. **Conocarpus erectus** (Buttonwood)
-6. **Sonneratia alba** (Mangrove Apple)
-7. **Ceriops tagal** (Spurred Mangrove)
-8. **Xylocarpus granatum** (Cannonball Mangrove)
+### 🌱 Supported Kerala Mangrove Species
+1. **Acanthus ilicifolius** (Sea Holy) - Acanthaceae
+2. **Aegiceras corniculatum** (River Mangrove) - Primulaceae
+3. **Avicennia marina** (Gray Mangrove) - Acanthaceae
+4. **Avicennia officinalis** (White Mangrove) - Acanthaceae
+5. **Bruguiera cylindrica** (Small leaved Mangrove) - Rhizophoraceae
+6. **Bruguiera gymnorhiza** (Large leaved Mangrove) - Rhizophoraceae
+7. **Bruguiera sexangula** (Golden orange Mangrove) - Rhizophoraceae
+8. **Ceriops tagal** (Yellow Mangrove) - Rhizophoraceae
+9. **Excoecaria agallocha** (Blinding Tree) - Euphorbiaceae
+10. **Heritiera littoralis** (Looking glass Mangrove) - Malvaceae
+11. **Kandelia candel** (Kandelia) - Rhizophoraceae
+12. **Lumnitzera racemosa** (Black Mangrove) - Combretaceae
+13. **Nypa fruticans** (Nipa palm) - Nypoideae
+14. **Rhizophora apiculata** (Tall stilt Mangrove) - Rhizophoraceae
+15. **Rhizophora mucronata** (Asiatic Mangrove) - Rhizophoraceae
+16. **Shirakiopsis indica** (Mock willow) - Euphorbiaceae
+17. **Sonneratia alba** (Sweet scented apple Mangrove) - Lythraceae
+18. **Sonneratia caseolaris** (Apple Mangrove) - Lythraceae
+19. **Acrostichum aureum** (Golden leather fern) - Pteridaceae
+20. **Other vegetation** (General mangrove vegetation) - Various
 
 ### 🔧 Technical Features
 - **No SDK Required**: Pure web technology
@@ -61,8 +73,8 @@ A web-based AI-powered application for real-time mangrove ecosystem species iden
 ### Option 2: Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/mangrove-segmentation.git
-cd mangrove-segmentation
+git clone https://github.com/your-username/kerala-mangrove-segmentation.git
+cd kerala-mangrove-segmentation
 
 # Serve locally (Python 3)
 python -m http.server 8000
@@ -80,26 +92,22 @@ npx serve .
 
 ## 📱 Usage Guide
 
-### Getting Started
+### Getting Started for Kerala Mangroves
 1. **Open the app** in your browser
 2. **Choose input source**:
    - Click "Start Camera" for live analysis
-   - Use file upload for drone footage
+   - Use file upload for drone footage from Kerala mangrove areas
 3. **Configure settings**:
-   - Adjust confidence threshold (10-90%)
+   - Adjust confidence threshold for Kerala species (10-90%)
    - Toggle segmentation overlay
    - Enable/disable species labels
 
-### Analysis Features
-- **Single Frame**: Click "Capture & Analyze" for one-time analysis
-- **Live Mode**: Toggle "Start Live Analysis" for continuous detection
-- **Results Export**: Download JSON data with species information
-
-### Best Practices
-- **Image Quality**: Use high-resolution images (1080p+)
-- **Lighting**: Ensure good contrast between species and background
-- **Distance**: Optimal range is 5-100m from mangrove canopy
-- **Angle**: Slight overhead angle provides best species differentiation
+### Best Practices for Kerala Mangrove Analysis
+- **Optimal Locations**: Vembanad Lake, Cochin backwaters, Kanayannur regions
+- **Flight Altitude**: 15-60m above canopy for Kerala species differentiation
+- **Timing**: Early morning or late afternoon for best species contrast
+- **Weather**: Clear conditions with minimal wind for stable footage
+- **Tidal Considerations**: Mid to high tide for better root system visibility
 
 ## 🔬 Technical Architecture
 
