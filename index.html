@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangrove Species Segmentation</title>
+    <title>Kerala Mangrove Species Segmentation</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.10.0/tf.min.js"></script>
     <style>
         * {
@@ -114,23 +114,51 @@
 
         .species-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
             margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .species-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             text-align: center;
             border: 2px solid transparent;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .species-card.detected {
             border-color: #4ade80;
             background: rgba(74, 222, 128, 0.2);
+        }
+
+        .species-color-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            border: 2px solid white;
+        }
+
+        .species-card h4 {
+            font-size: 0.9em;
+            margin: 5px 0;
+            color: #4ade80;
+        }
+
+        .species-card p {
+            font-size: 0.8em;
+            margin: 3px 0;
+        }
+
+        .family-name {
+            color: #a0a0a0;
+            font-style: italic;
+            font-size: 0.75em !important;
         }
 
         .confidence-bar {
@@ -233,8 +261,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🌿 Mangrove Species Segmentation</h1>
-            <p>AI-powered species identification for DJI Mini 2 drone footage</p>
+            <h1>🌿 Kerala Mangrove Species Segmentation</h1>
+            <p>AI-powered identification of 19 native mangrove species for DJI Mini 2 drone footage</p>
+            <p style="font-size: 0.9em; opacity: 0.8;">Specialized for Kanayannur, Kerala mangrove ecosystems</p>
         </div>
 
         <div class="controls">
@@ -278,21 +307,52 @@
                 </div>
                 
                 <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: rgba(255, 0, 0, 0.7);"></div>
-                        <span>Rhizophora</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: rgba(0, 255, 0, 0.7);"></div>
-                        <span>Avicennia</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: rgba(0, 0, 255, 0.7);"></div>
-                        <span>Bruguiera</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: rgba(255, 255, 0, 0.7);"></div>
-                        <span>Water</span>
+                    <h4 style="width: 100%; margin-bottom: 10px;">Kerala Mangrove Species Legend</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 0.8em;">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(255, 0, 0, 0.7);"></div>
+                            <span>Sea Holy</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(0, 255, 0, 0.7);"></div>
+                            <span>River Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(0, 0, 255, 0.7);"></div>
+                            <span>Gray Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(255, 165, 0, 0.7);"></div>
+                            <span>White Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(128, 0, 128, 0.7);"></div>
+                            <span>Small leaved Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(255, 192, 203, 0.7);"></div>
+                            <span>Large leaved Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(0, 255, 255, 0.7);"></div>
+                            <span>Golden orange Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(255, 255, 0, 0.7);"></div>
+                            <span>Yellow Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(255, 128, 0, 0.7);"></div>
+                            <span>Blinding Tree</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(128, 255, 0, 0.7);"></div>
+                            <span>Looking glass Mangrove</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(100, 100, 100, 0.7);"></div>
+                            <span>Other vegetation</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -331,16 +391,28 @@
         let showSegmentation = true;
         let showLabels = true;
 
-        // Mangrove species data
+        // Kerala Mangrove species data
         const mangroveSpecies = [
-            { name: 'Rhizophora mangle', common: 'Red Mangrove', color: [255, 0, 0] },
-            { name: 'Avicennia germinans', common: 'Black Mangrove', color: [0, 255, 0] },
-            { name: 'Bruguiera gymnorhiza', common: 'Large-leafed Orange Mangrove', color: [0, 0, 255] },
-            { name: 'Laguncularia racemosa', common: 'White Mangrove', color: [255, 165, 0] },
-            { name: 'Conocarpus erectus', common: 'Buttonwood', color: [128, 0, 128] },
-            { name: 'Sonneratia alba', common: 'Mangrove Apple', color: [255, 192, 203] },
-            { name: 'Ceriops tagal', common: 'Spurred Mangrove', color: [0, 255, 255] },
-            { name: 'Xylocarpus granatum', common: 'Cannonball Mangrove', color: [255, 255, 0] }
+            { name: 'Acanthus ilicifolius', common: 'Sea Holy', family: 'Acanthaceae', color: [255, 0, 0] },
+            { name: 'Aegiceras corniculatum', common: 'River Mangrove', family: 'Primulaceae', color: [0, 255, 0] },
+            { name: 'Avicennia marina', common: 'Gray Mangrove', family: 'Acanthaceae', color: [0, 0, 255] },
+            { name: 'Avicennia officinalis', common: 'White Mangrove', family: 'Acanthaceae', color: [255, 165, 0] },
+            { name: 'Bruguiera cylindrica', common: 'Small leaved Mangrove', family: 'Rhizophoraceae', color: [128, 0, 128] },
+            { name: 'Bruguiera gymnorhiza', common: 'Large leaved Mangrove', family: 'Rhizophoraceae', color: [255, 192, 203] },
+            { name: 'Bruguiera sexangula', common: 'Golden orange Mangrove', family: 'Rhizophoraceae', color: [0, 255, 255] },
+            { name: 'Ceriops tagal', common: 'Yellow Mangrove', family: 'Rhizophoraceae', color: [255, 255, 0] },
+            { name: 'Excoecaria agallocha', common: 'Blinding Tree', family: 'Euphorbiaceae', color: [255, 128, 0] },
+            { name: 'Heritiera littoralis', common: 'Looking glass Mangrove', family: 'Malvaceae', color: [128, 255, 0] },
+            { name: 'Kandelia candel', common: 'Kandelia', family: 'Rhizophoraceae', color: [0, 128, 255] },
+            { name: 'Lumnitzera racemosa', common: 'Black Mangrove', family: 'Combretaceae', color: [255, 0, 128] },
+            { name: 'Nypa fruticans', common: 'Nipa palm', family: 'Nypoideae', color: [128, 128, 255] },
+            { name: 'Rhizophora apiculata', common: 'Tall stilt Mangrove', family: 'Rhizophoraceae', color: [255, 128, 128] },
+            { name: 'Rhizophora mucronata', common: 'Asiatic Mangrove', family: 'Rhizophoraceae', color: [128, 255, 128] },
+            { name: 'Shirakiopsis indica', common: 'Mock willow', family: 'Euphorbiaceae', color: [128, 128, 128] },
+            { name: 'Sonneratia alba', common: 'Sweet scented apple Mangrove', family: 'Lythraceae', color: [255, 255, 128] },
+            { name: 'Sonneratia caseolaris', common: 'Apple Mangrove', family: 'Lythraceae', color: [128, 255, 255] },
+            { name: 'Acrostichum aureum', common: 'Golden leather fern', family: 'Pteridaceae', color: [200, 150, 100] },
+            { name: 'Other vegetation', common: 'Other mangrove vegetation', family: 'Various', color: [100, 100, 100] }
         ];
 
         let detectedSpecies = {};
@@ -364,13 +436,15 @@
             const grid = document.getElementById('speciesGrid');
             grid.innerHTML = '';
             
-            mangroveSpecies.forEach(species => {
+            mangroveSpecies.forEach((species, index) => {
                 const card = document.createElement('div');
                 card.className = 'species-card';
                 card.id = `species-${species.name.replace(/\s+/g, '-').toLowerCase()}`;
                 card.innerHTML = `
+                    <div class="species-color-indicator" style="background: rgb(${species.color.join(',')});"></div>
                     <h4>${species.common}</h4>
                     <p><em>${species.name}</em></p>
+                    <p class="family-name">${species.family}</p>
                     <div class="confidence-bar">
                         <div class="confidence-fill" style="width: 0%"></div>
                     </div>
@@ -530,7 +604,7 @@
             const height = imageData.height;
             const data = imageData.data;
             
-            // Simulate segmentation based on color analysis
+            // Simulate segmentation based on color analysis for Kerala mangrove species
             const segmentation = new Uint8Array(width * height);
             const speciesDetected = {};
             
@@ -540,31 +614,84 @@
                 const b = data[i + 2];
                 
                 const pixelIndex = i / 4;
+                let detectedSpeciesIndex = -1;
                 
-                // Simple color-based classification (would be replaced with ML model)
-                if (g > r && g > b && g > 100) {
-                    // Green areas - likely vegetation
-                    if (r < 80) {
-                        segmentation[pixelIndex] = 1; // Avicennia (dark green)
-                        speciesDetected['Avicennia germinans'] = (speciesDetected['Avicennia germinans'] || 0) + 1;
+                // Enhanced color-based classification for Kerala species
+                const hue = getHue(r, g, b);
+                const saturation = getSaturation(r, g, b);
+                const brightness = getBrightness(r, g, b);
+                
+                // Classify based on color characteristics
+                if (g > r && g > b && g > 80) {
+                    // Green vegetation areas
+                    if (brightness > 180) {
+                        if (hue < 60) {
+                            detectedSpeciesIndex = 1; // River Mangrove (bright green)
+                        } else if (hue < 120) {
+                            detectedSpeciesIndex = 9; // Looking glass Mangrove (lime green)
+                        } else {
+                            detectedSpeciesIndex = 6; // Golden orange Mangrove
+                        }
+                    } else if (brightness > 120) {
+                        if (saturation > 100) {
+                            detectedSpeciesIndex = 2; // Gray Mangrove
+                        } else {
+                            detectedSpeciesIndex = 4; // Small leaved Mangrove
+                        }
                     } else {
-                        segmentation[pixelIndex] = 0; // Rhizophora (lighter green)
-                        speciesDetected['Rhizophora mangle'] = (speciesDetected['Rhizophora mangle'] || 0) + 1;
+                        detectedSpeciesIndex = 5; // Large leaved Mangrove
+                    }
+                } else if (r > g && r > b && r > 100) {
+                    // Red/orange areas
+                    if (hue < 30) {
+                        detectedSpeciesIndex = 0; // Sea Holy (red)
+                    } else if (hue < 60) {
+                        detectedSpeciesIndex = 8; // Blinding Tree (orange)
+                    } else {
+                        detectedSpeciesIndex = 16; // Sweet scented apple Mangrove
                     }
                 } else if (b > r && b > g && b > 80) {
-                    // Blue areas - water or Bruguiera
-                    segmentation[pixelIndex] = 2; // Bruguiera
-                    speciesDetected['Bruguiera gymnorhiza'] = (speciesDetected['Bruguiera gymnorhiza'] || 0) + 1;
-                } else if (r + g + b < 200) {
-                    // Dark areas - other mangrove species
-                    const rand = Math.random();
-                    if (rand < 0.3) {
-                        segmentation[pixelIndex] = 3; // Laguncularia
-                        speciesDetected['Laguncularia racemosa'] = (speciesDetected['Laguncularia racemosa'] || 0) + 1;
-                    } else if (rand < 0.5) {
-                        segmentation[pixelIndex] = 4; // Conocarpus
-                        speciesDetected['Conocarpus erectus'] = (speciesDetected['Conocarpus erectus'] || 0) + 1;
+                    // Blue areas
+                    if (brightness > 150) {
+                        detectedSpeciesIndex = 10; // Kandelia
+                    } else {
+                        detectedSpeciesIndex = 11; // Black Mangrove
                     }
+                } else if (r + g + b > 400) {
+                    // Bright areas
+                    if (Math.abs(r - g) < 20 && Math.abs(g - b) < 20) {
+                        detectedSpeciesIndex = 3; // White Mangrove
+                    } else {
+                        detectedSpeciesIndex = 7; // Yellow Mangrove
+                    }
+                } else if (r + g + b < 200) {
+                    // Dark areas
+                    const rand = Math.random();
+                    if (rand < 0.2) {
+                        detectedSpeciesIndex = 12; // Nipa palm
+                    } else if (rand < 0.4) {
+                        detectedSpeciesIndex = 13; // Tall stilt Mangrove
+                    } else if (rand < 0.6) {
+                        detectedSpeciesIndex = 14; // Asiatic Mangrove
+                    } else if (rand < 0.8) {
+                        detectedSpeciesIndex = 15; // Mock willow
+                    } else {
+                        detectedSpeciesIndex = 18; // Golden leather fern
+                    }
+                } else {
+                    // Medium brightness - other species or other vegetation
+                    const rand = Math.random();
+                    if (rand < 0.5) {
+                        detectedSpeciesIndex = 17; // Apple Mangrove
+                    } else {
+                        detectedSpeciesIndex = 19; // Other vegetation
+                    }
+                }
+                
+                if (detectedSpeciesIndex >= 0 && detectedSpeciesIndex < mangroveSpecies.length) {
+                    segmentation[pixelIndex] = detectedSpeciesIndex;
+                    const speciesName = mangroveSpecies[detectedSpeciesIndex].name;
+                    speciesDetected[speciesName] = (speciesDetected[speciesName] || 0) + 1;
                 } else {
                     segmentation[pixelIndex] = 255; // Background/water
                 }
@@ -577,7 +704,7 @@
             Object.keys(speciesDetected).forEach(speciesName => {
                 const pixelCount = speciesDetected[speciesName];
                 const coverage = pixelCount / totalPixels;
-                const confidence = Math.min(0.95, coverage * 10 + Math.random() * 0.3); // Simulate confidence
+                const confidence = Math.min(0.95, coverage * 8 + Math.random() * 0.25); // Simulate confidence
                 
                 if (confidence > confidenceThreshold) {
                     species[speciesName] = {
@@ -595,28 +722,47 @@
                 height: height
             };
         }
+        
+        function getHue(r, g, b) {
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const delta = max - min;
+            
+            if (delta === 0) return 0;
+            
+            let hue;
+            switch (max) {
+                case r: hue = ((g - b) / delta) % 6; break;
+                case g: hue = (b - r) / delta + 2; break;
+                case b: hue = (r - g) / delta + 4; break;
+            }
+            return hue * 60;
+        }
+        
+        function getSaturation(r, g, b) {
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            return max === 0 ? 0 : ((max - min) / max) * 100;
+        }
+        
+        function getBrightness(r, g, b) {
+            return Math.max(r, g, b);
+        }
 
         function drawSegmentation(segmentation) {
             const imageData = segCtx.createImageData(canvas.width, canvas.height);
             const data = imageData.data;
             
-            const colors = [
-                [255, 0, 0, 128],   // Rhizophora - Red
-                [0, 255, 0, 128],   // Avicennia - Green
-                [0, 0, 255, 128],   // Bruguiera - Blue
-                [255, 165, 0, 128], // Laguncularia - Orange
-                [128, 0, 128, 128], // Conocarpus - Purple
-            ];
-            
             for (let i = 0; i < segmentation.length; i++) {
                 const classId = segmentation[i];
                 const dataIndex = i * 4;
                 
-                if (classId < colors.length) {
-                    data[dataIndex] = colors[classId][0];     // R
-                    data[dataIndex + 1] = colors[classId][1]; // G
-                    data[dataIndex + 2] = colors[classId][2]; // B
-                    data[dataIndex + 3] = colors[classId][3]; // A
+                if (classId < mangroveSpecies.length) {
+                    const color = mangroveSpecies[classId].color;
+                    data[dataIndex] = color[0];         // R
+                    data[dataIndex + 1] = color[1];     // G
+                    data[dataIndex + 2] = color[2];     // B
+                    data[dataIndex + 3] = 120;          // A (semi-transparent)
                 } else {
                     data[dataIndex + 3] = 0; // Transparent for background
                 }
