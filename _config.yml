@@ -1,8 +1,8 @@
 # GitHub Pages Configuration
-title: Mangrove Species Segmentation
-description: AI-powered mangrove ecosystem species identification for DJI Mini 2 drone footage
+title: Kerala Mangrove Species Segmentation
+description: AI-powered identification of 19 native Kerala mangrove species for DJI Mini 2 drone footage
 url: "https://your-username.github.io"
-baseurl: "/mangrove-segmentation"
+baseurl: "/kerala-mangrove-segmentation"
 
 # Build settings
 markdown: kramdown
