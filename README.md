@@ -4,7 +4,7 @@ A web-based AI-powered application for real-time mangrove ecosystem species iden
 
 ## 🚀 Live Demo
 
-**[Try the App Now!](https://your-username.github.io/kerala-mangrove-segmentation/)**
+**[Try the App Now!](https://sethumadhav-6.github.io/Mangrove-Species-Segmentation-Web-App/)**
 
 ## 📋 Features
 
@@ -73,8 +73,8 @@ A web-based AI-powered application for real-time mangrove ecosystem species iden
 ### Option 2: Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/kerala-mangrove-segmentation.git
-cd kerala-mangrove-segmentation
+git clone https://github.com/sethumadhav-6/Mangrove-Species-Segmentation-Web-App.git
+cd Mangrove-Species-Segmentation-Web-App
 
 # Serve locally (Python 3)
 python -m http.server 8000
