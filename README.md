@@ -270,11 +270,11 @@ MIT License - Feel free to use, modify, and distribute.
 ## 📞 Support
 
 - **GitHub Issues**: Bug reports and feature requests
-- **Email**: your-email@example.com
+- **Email**: sethumadhavn7@gmail.com
 - **Documentation**: See `/docs` folder for detailed guides
 
 ---
 
-**Made with 🌿 for mangrove conservation**
+**Made with Canopy for mangrove conservation**
 
 *This project is dedicated to preserving and understanding mangrove ecosystems worldwide.*
